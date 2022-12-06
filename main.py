@@ -12,8 +12,8 @@ load_dotenv()
 # GET.SALES.FOR.MDB
 ###
 
-MONGODB_URI = os.getenv("MONGODB_URI", None)
-assert MONGODB_URI is not None, "MONGODB_URI is not set"
+MONGODB_URI = os.getenv("LINODE_MONGODB_URI", None)
+assert MONGODB_URI is not None, "LINODE_MONGODB_URI is not set"
 
 client = MotorClient(MONGODB_URI)
 db = client.get_database("busse")
@@ -62,9 +62,19 @@ async def read_csv_to_mongodb():
     print("deleted", res.deleted_count)
     res = await db.sales.insert_many(docs)
     print("inserted", len(res.inserted_ids))
-    
+
+
+async def delete_by_key(key: str):
+    res = await db.sales.delete_many({"KEY": key})
+    print("deleted", res.deleted_count)
 
 if __name__ == "__main__":
     loop = get_event_loop()
-    loop.run_until_complete(read_csv_to_mongodb())
+    import sys
+    
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "delete":
+            loop.run_until_complete(delete_by_key(sys.argv[2]))
+    else:    
+        loop.run_until_complete(read_csv_to_mongodb())
     
