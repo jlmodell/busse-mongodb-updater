@@ -69,6 +69,9 @@ async def delete_by_key(key: str):
     print("deleted", res.deleted_count)
 
 if __name__ == "__main__":
+    print("USAGE: infisical run -- python main.py | python main.py delete <key>")
+    print()
+
     loop = get_event_loop()
     import sys
     
