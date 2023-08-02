@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "busse-mongodb-updater"
+version = "0.1.0"
+description = ""
+authors = ["jlmodell <modell.jeff@me.com>"]
+readme = "README.md"
+packages = [{include = "busse_mongodb_updater"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+motor = "3.0.0"
+nanoid = "2.0.0"
+pymongo = "4.1.1"
+python-dotenv = "0.20.0"
+tornado = "6.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

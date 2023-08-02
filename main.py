@@ -68,10 +68,7 @@ async def delete_by_key(key: str):
     res = await db.sales.delete_many({"KEY": key})
     print("deleted", res.deleted_count)
 
-if __name__ == "__main__":
-    print("USAGE: infisical run -- python main.py | python main.py delete <key>")
-    print()
-
+if __name__ == "__main__":    
     loop = get_event_loop()
     import sys
     
